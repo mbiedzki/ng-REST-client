@@ -7,6 +7,7 @@
     <td>Author</td>
     <td>Category</td>
     <td>Format</td>
+    <td>Del</td>
   </tr>
   </thead>
   <tbody>
@@ -16,6 +17,8 @@
     <td>{{book.author}}</td>
     <td>{{book.category}}</td>
     <td>{{book.format}}</td>
+    <button title="delete"
+            (click)="delete(book)">x</button>
   </tr>
   </tbody>
 </table>
