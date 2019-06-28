@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 
+import { Book } from './book';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,17 +13,17 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class BooksService {
+export class BookService {
 
   private serverAddress = 'https://biedzki.pl/library-1.0/books/';
   private serverInfo = 'https://biedzki.pl/library-1.0/actuator/info';
   private serverHealth = 'https://biedzki.pl/library-1.0/actuator/health';
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(this.serverAddress)
+      .pipe(
+        catchError(this.handleError<Book[]>('getBooks', []))
+      );
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
