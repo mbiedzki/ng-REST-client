@@ -1,0 +1,18 @@
+<div class="w3-container w3-border w3-border-amber"><br/>
+  <span style='width: 8em; display: inline-block' class='w3-amber'>Title:</span>
+    <input #bookTitle size='50'/><br/>
+  <span style='width: 8em; display: inline-block' class='w3-amber'>Author:</span>
+    <input #bookAuthor size='50'/><br/>
+  <span style='width: 8em; display: inline-block' class='w3-amber'>Category: </span>
+    <input #bookCategory size='50'/><br/>
+  <span style='width: 8em; display: inline-block' class='w3-amber'>Format: </span>
+    <input #bookFormat size='50'/><br/><br/>
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="w3-button w3-xlarge w3-border w3-border-amber w3-round-xxlarge"
+          (click)="addBook(bookTitle.value, bookAuthor.value, bookCategory.value, bookFormat.value);
+  bookTitle.value=''; bookAuthor.value=''; bookCategory.value=''; bookFormat.value=''">
+    Add book
+  </button>
+  <br/><br/>
+</div>

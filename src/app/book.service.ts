@@ -16,13 +16,17 @@ const httpOptions = {
 export class BookService {
 
   private serverAddress = 'https://biedzki.pl/library-1.0/books/';
-  private serverInfo = 'https://biedzki.pl/library-1.0/actuator/info';
-  private serverHealth = 'https://biedzki.pl/library-1.0/actuator/health';
+
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.serverAddress)
       .pipe(
         catchError(this.handleError<Book[]>('getBooks', []))
       );
+  }
+  addBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(this.serverAddress, book, httpOptions).pipe(
+      catchError(this.handleError<Book>('addBook'))
+    );
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

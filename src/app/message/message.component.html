@@ -1,0 +1,5 @@
+<div *ngIf="messageService.message.length">
+  <div class="w3-container w3-red w3-large" align="center"> {{messageService.message}} </div><br/>
+  <button class="w3-button w3-xlarge w3-border w3-border-amber w3-round-xxlarge"
+          (click)="messageService.clearMessage()">Clear message</button><br/><br/>
+</div>
